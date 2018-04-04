@@ -1,0 +1,9 @@
+In terminal:
+rails g model Comment commentable:references{polymorphic} comment:text user:references
+rake db:migrate
+
+In comment.rb:
+validates :commentable, :user, :comment, presence: true
+
+In message.rb, blog.rb, post.rb, and user.rb:
+has_many :comments, as: :commentable
